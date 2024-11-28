@@ -19,7 +19,7 @@ namespace FigureLibTests
 		};
 
 		[Fact]
-		//Проверка наследуют ли фигуры класс Shape
+		//Наследуют ли фигуры класс Shape
 		public void FiguresInheritShapeClass()
 		{
 			var typesCount = assemblyFigure.GetTypes().
@@ -45,16 +45,26 @@ namespace FigureLibTests
 		[Theory]
 		[InlineData("Circle", new object?[] {-1})]
 		[InlineData("Triangle", new object?[] {-1,3,5})]
-		//Проверка выдают ли ошибку при 
+		//Выдают ли ошибку создании фигуры с недопустимыми параметрами
 		public void FiguresNotExist(string shapeName, object?[] constructorParams)
 		{
-			var shapes = assemblyFigure.GetTypes().
+			var shape = assemblyFigure.GetTypes().
 				Where(x => x.Namespace == "FigureLib.Shapes").
-				Where(x => !x.Name.Contains("<>"));
-			var shape = shapes.Where(x => x.Name == shapeName).FirstOrDefault();
+				Where(x => x.Name == shapeName).
+				FirstOrDefault();
 			var s = shape.GetConstructors().FirstOrDefault();
 			var exception = Record.Exception(() => s.Invoke(constructorParams));
 			Assert.NotNull(exception);
+		}
+		[Fact]
+		//Является ли треугольник прямоугольным
+		public void TriangleIsRectangular()
+		{
+			var triangle1 = new Triangle(3,4,5);
+			var triangle2 = new Triangle(3, 2, 4);
+			Assert.Equal(true, triangle1.IsRight());
+			Assert.Equal(false, triangle2.IsRight());
+
 		}
 	}
 }
