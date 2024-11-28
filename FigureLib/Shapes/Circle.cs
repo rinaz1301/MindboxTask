@@ -9,7 +9,7 @@ namespace FigureLib.Shapes
 	public class Circle : Shape
 	{
 		private readonly double _radius;
-		protected override double? Area { get; set; }
+		public override double? Area { get; protected set; }
 		public Circle(double radius)
 		{
 			if (radius < 0) throw new ArgumentException("Radius can not be negative");

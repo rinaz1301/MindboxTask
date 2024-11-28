@@ -10,7 +10,7 @@ namespace FigureLib.Shapes
 	{
 		private readonly double[] _sides = new double[3];
 
-		protected override double? Area { get; set; }
+		public override double? Area { get; protected set; }
 		public Triangle(double side1, double side2, double side3)
 		{
 			if (NotExist(side1, side2, side3)) 

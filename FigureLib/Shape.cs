@@ -2,7 +2,7 @@
 {
 	public abstract class Shape
 	{
-		protected abstract double? Area { get; set; }
+		public abstract double? Area { get; protected set; }
 		public abstract double CalculateArea();
 	}
 }
