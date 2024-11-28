@@ -62,8 +62,8 @@ namespace FigureLibTests
 		{
 			var triangle1 = new Triangle(3,4,5);
 			var triangle2 = new Triangle(3, 2, 3);
-			Assert.Equal(true, triangle1.IsRight());
-			Assert.Equal(false, triangle2.IsRight());
+			Assert.True(triangle1.IsRight());
+			Assert.False(triangle2.IsRight());
 
 		}
 	}
